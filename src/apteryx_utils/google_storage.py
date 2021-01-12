@@ -1,8 +1,8 @@
+from pathlib import Path
+import os
+
 from google.oauth2 import service_account
 from google.cloud import storage
-from pathlib import Path
-
-import os
 
 credentials = service_account.Credentials.from_service_account_file(os.environ['GCLOUD_CREDENTIALS'])
 client = storage.Client(project=os.environ['GCLOUD_PROJECT'], credentials=credentials)

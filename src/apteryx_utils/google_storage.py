@@ -4,6 +4,8 @@ import os
 from google.oauth2 import service_account
 from google.cloud import storage
 
+from tqdm import tqdm
+
 credentials = service_account.Credentials.from_service_account_file(os.environ['GCLOUD_CREDENTIALS'])
 client = storage.Client(project=os.environ['GCLOUD_PROJECT'], credentials=credentials)
 
@@ -26,8 +28,9 @@ def download_gs_folder(bucket, gs_path, dst_path, client=client):
     if not os.path.exists(dst_path):
         os.mkdir(dst_path)
     blobs = list_blobs_with_prefix(bucket, gs_path, client=client)
+    blobs = list(blobs)
     print('Download starting - will print "DONE" when finished!')
-    for blob in blobs:
+    for blob in tqdm(blobs):
         fname = Path(blob.name).name
         dst = os.path.join(dst_path, fname)
         print(f'Downloading: {fname}')

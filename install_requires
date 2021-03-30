@@ -1,4 +1,4 @@
 # Newline separated package dependencies.
 google-cloud-storage~=1.35.0
 google-auth-oauthlib==0.4.1
-tqdm
+tqdm>4.0.0

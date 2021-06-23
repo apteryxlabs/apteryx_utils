@@ -19,8 +19,8 @@ if proceed:
     with open('pyproject.toml', 'w') as f:
         f.write(toml.dumps(t))
 
-    #print(subprocess.check_output('poetry build'.split()))
-    #print(subprocess.check_output(f'poetry publish -u {os.environ["PYPI_USERNAME"]} -p {os.environ["PYPI_PASS"]}'.split()))
+    print(subprocess.check_output('poetry build'.split()))
+    print(subprocess.check_output(f'poetry publish -u {os.environ["PYPI_USERNAME"]} -p {os.environ["PYPI_PASS"]}'.split()))
 
 
 else:

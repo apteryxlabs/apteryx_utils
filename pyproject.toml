@@ -4,13 +4,13 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "apteryx"
-version = "1.0.6"
+version = "1.0.7"
 description = "Utilities and useful things for Apteryx Labs"
 authors = [ "apteryxlabs <matthew@apteryxlabs.com>",]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "~3.8"
+python = "^3.8"
 google-api-python-client = "^2.9.0"
 google-auth-httplib2 = "^0.1.0"
 google-auth-oauthlib = "^0.4.4"

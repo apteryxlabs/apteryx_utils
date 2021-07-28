@@ -632,7 +632,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
 
 [[package]]
 name = "ray"
-version = "1.4.0"
+version = "1.5.0"
 description = "Ray provides a simple, universal API for building distributed applications."
 category = "main"
 optional = false
@@ -649,7 +649,10 @@ gpustat = "*"
 grpcio = ">=1.28.1"
 jsonschema = "*"
 msgpack = ">=1.0.0,<2.0.0"
-numpy = ">=1.16"
+numpy = [
+    {version = ">=1.16", markers = "python_version < \"3.9\""},
+    {version = ">=1.19.3", markers = "python_version >= \"3.9\""},
+]
 opencensus = "*"
 prometheus-client = ">=0.7.1"
 protobuf = ">=3.15.3"
@@ -660,13 +663,13 @@ redis = ">=3.5.0"
 requests = "*"
 
 [package.extras]
-all = ["opencv-python-headless (<=4.3.0.36)", "scipy", "uvicorn", "requests", "opentelemetry-exporter-otlp (==1.1.0)", "gym", "starlette", "pandas", "opentelemetry-api (==1.1.0)", "dm-tree", "kubernetes", "colorful", "opentelemetry-sdk (==1.1.0)", "fastapi", "lz4", "pyyaml", "tabulate", "tensorboardx"]
+all = ["fastapi", "kubernetes", "opentelemetry-sdk (==1.1.0)", "opentelemetry-exporter-otlp (==1.1.0)", "dm-tree", "lz4", "colorful", "uvicorn", "gym", "pyyaml", "opentelemetry-api (==1.1.0)", "opencv-python-headless (<=4.3.0.36)", "tabulate", "scipy", "tensorboardX (>=1.9)", "starlette", "pandas", "requests"]
 default = ["colorful"]
 k8s = ["kubernetes"]
 observability = ["opentelemetry-api (==1.1.0)", "opentelemetry-sdk (==1.1.0)", "opentelemetry-exporter-otlp (==1.1.0)"]
-rllib = ["pandas", "tabulate", "tensorboardx", "dm-tree", "gym", "lz4", "opencv-python-headless (<=4.3.0.36)", "pyyaml", "scipy"]
+rllib = ["pandas", "tabulate", "tensorboardX (>=1.9)", "dm-tree", "gym", "lz4", "opencv-python-headless (<=4.3.0.36)", "pyyaml", "scipy"]
 serve = ["uvicorn", "requests", "starlette", "fastapi"]
-tune = ["pandas", "tabulate", "tensorboardx"]
+tune = ["pandas", "tabulate", "tensorboardX (>=1.9)"]
 
 [[package]]
 name = "redis"
@@ -803,8 +806,8 @@ multidict = ">=4.0"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "3.8.9"
-content-hash = "e13a1f96490c9ebfaaa3a3bbcb464d9dd778faa3ecd56793b0eaa7c410e98e18"
+python-versions = "^3.8"
+content-hash = "e2d8272fd295e537f7068ec9dd672803b77c706420a5a9e514694c35467f631a"
 
 [metadata.files]
 aiohttp = [
@@ -1478,15 +1481,18 @@ pyyaml = [
     {file = "PyYAML-5.4.1.tar.gz", hash = "sha256:607774cbba28732bfa802b54baa7484215f530991055bb562efbed5b2f20a45e"},
 ]
 ray = [
-    {file = "ray-1.4.0-cp36-cp36m-macosx_10_13_intel.whl", hash = "sha256:34532ecd8867751f880739324ba698d9ab7aa5bd7ff41677b879aaa6099b4276"},
-    {file = "ray-1.4.0-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:ff1e1aa6921c78ffa8e0c0eba49c8207e16a1f79bff1250c03fd2890f91108c4"},
-    {file = "ray-1.4.0-cp36-cp36m-win_amd64.whl", hash = "sha256:2b639565356e87b22e9158a1ef91fb492d9b7ff89f7ca506036965f5c4f71b90"},
-    {file = "ray-1.4.0-cp37-cp37m-macosx_10_13_intel.whl", hash = "sha256:a8696e6aa6b14ab1e0282cb8e3a84c4496ea47a4008105f731913b3364f5a1a0"},
-    {file = "ray-1.4.0-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:4ceaf52224c090f2a1ddcae9daa61fc08b7473f7e3e3a47c7954491fe0c05071"},
-    {file = "ray-1.4.0-cp37-cp37m-win_amd64.whl", hash = "sha256:cf5ea375f0f5e47b89398c10a6bd857f4ee635414d781312439c878dbc097e54"},
-    {file = "ray-1.4.0-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:44d6d9e1e1defda73c58c2ec111c9c179f647559cc3f3775c694f4a7de0bdd30"},
-    {file = "ray-1.4.0-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:63417a9417651018ce08ef3741a7d8a702fd04d8ac07cedfdab0a42de9b760d6"},
-    {file = "ray-1.4.0-cp38-cp38-win_amd64.whl", hash = "sha256:8b6acd370c27cfd8c8663db70a73371b6d59befaccf52c2684ec69ca3c2bb554"},
+    {file = "ray-1.5.0-cp36-cp36m-macosx_10_13_intel.whl", hash = "sha256:d2327eedab91cc768173354eff4d38930c99a843ba0fc2cfc5f96d7d48675b92"},
+    {file = "ray-1.5.0-cp36-cp36m-manylinux2014_x86_64.whl", hash = "sha256:d3003e28d9757b1577c62d0ff18723d69d80d259c05a51674befbd2725450483"},
+    {file = "ray-1.5.0-cp36-cp36m-win_amd64.whl", hash = "sha256:bb39d761a1cc5e73c718c97f303971d9031e3bf1da58eacd5acae960aeea489b"},
+    {file = "ray-1.5.0-cp37-cp37m-macosx_10_13_intel.whl", hash = "sha256:4e4dbfdd50eff62a8bd37283f1772b5522c4c6131124edad161ef38e511999db"},
+    {file = "ray-1.5.0-cp37-cp37m-manylinux2014_x86_64.whl", hash = "sha256:65d46a14571987ce40e6f919d4ae7ffd5acb68d4f365de1413029be487d8eb72"},
+    {file = "ray-1.5.0-cp37-cp37m-win_amd64.whl", hash = "sha256:e0b900db635a1db79abf8865b7e6a62ceffb2e34dbc0684d8be38f2c9770c9e8"},
+    {file = "ray-1.5.0-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:288fa763a0c7ce41a786c5c03f80d1294282c19df76eb4dbb6b036b55bf6e5bf"},
+    {file = "ray-1.5.0-cp38-cp38-manylinux2014_x86_64.whl", hash = "sha256:79b0fb91c462939d94dc0eaf948be5e9814e710f8859e7fd5d0d0328564ae512"},
+    {file = "ray-1.5.0-cp38-cp38-win_amd64.whl", hash = "sha256:e5859afaeb1778442055c69380e64c23d437a594425a68830333ca97d22729c0"},
+    {file = "ray-1.5.0-cp39-cp39-macosx_10_13_x86_64.whl", hash = "sha256:f70b3315c39a381b4dc32422b82ba9d8c9a4dbe083fa992a46e69a617be9f94d"},
+    {file = "ray-1.5.0-cp39-cp39-manylinux2014_x86_64.whl", hash = "sha256:3ce07420dbb26c9e8f74d655cc207ba3ed28c58b46dd40819e0ee40344bd1c8f"},
+    {file = "ray-1.5.0-cp39-cp39-win_amd64.whl", hash = "sha256:49132e7e10fc8b36d0c4b81490b343a9fcaacd6a500b0be5cbcc60d4f11b3350"},
 ]
 redis = [
     {file = "redis-3.5.3-py2.py3-none-any.whl", hash = "sha256:432b788c4530cfe16d8d943a09d40ca6c16149727e4afe8c2c9d5580c59d9f24"},

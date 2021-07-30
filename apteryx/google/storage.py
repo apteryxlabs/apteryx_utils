@@ -7,8 +7,8 @@ from google.cloud import storage
 
 from tqdm import tqdm
 
-credentials = service_account.Credentials.from_service_account_file(os.environ['GCLOUD_CREDENTIALS'])
-client = storage.Client(project=os.environ['GCLOUD_PROJECT'], credentials=credentials)
+credentials = service_account.Credentials.from_service_account_file(os.getenv('GCLOUD_CREDENTIALS', input('abs path to GCP credentials: ')))
+client = storage.Client(project=os.getenv('GCLOUD_PROJECT', input('GCLOUD_PROJECT: ')), credentials=credentials)
 
 
 def set_gcp_creds(project_name: str, path_to_creds: Union[Path, str]) -> storage.Client:

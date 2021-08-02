@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "apteryx"
-version = "1.0.8"
+version = "1.0.9"
 description = "Utilities and useful things for Apteryx Labs"
 authors = [ "apteryxlabs <matthew@apteryxlabs.com>",]
 license = "MIT"

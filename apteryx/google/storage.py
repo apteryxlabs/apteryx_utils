@@ -1,3 +1,4 @@
+import pathlib
 from typing import Union
 from pathlib import Path
 import os
@@ -54,11 +55,14 @@ def download_gs_folder(bucket, gs_path, dst_path, client=client):
     print("DONE")
 
 
-def rename_blob(blob: storage.blob.Blob, new_name: str, client=client):
+def rename_blob(blob: storage.blob.Blob, new_name: Union[str, pathlib.Path], client=client):
     """Renames a blob."""
     # bucket_name = "your-bucket-name"
     # blob_name = "your-object-name"
     # new_name = "new-object-name"
+
+    if isinstance(new_name, pathlib.Path):
+        new_name = str(new_name)
 
     bucket = client.bucket(blob.bucket.name)
 

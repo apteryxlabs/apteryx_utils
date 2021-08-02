@@ -7,8 +7,16 @@ from google.cloud import storage
 
 from tqdm import tqdm
 
-credentials = service_account.Credentials.from_service_account_file(os.getenv('GCLOUD_CREDENTIALS', input('abs path to GCP credentials: ')))
-client = storage.Client(project=os.getenv('GCLOUD_PROJECT', input('GCLOUD_PROJECT: ')), credentials=credentials)
+creds_path = os.getenv('GCLOUD_CREDENTIALS')
+if not creds_path:
+    creds_path = input('abs path to GCP credentials:')
+
+gcloud_project = os.getenv('GCLOUD_PROJECT')
+if not gcloud_project:
+    gcloud_project = input('GCLOUD_PROJECT: ')
+
+credentials = service_account.Credentials.from_service_account_file(creds_path)
+client = storage.Client(project=gcloud_project, credentials=credentials)
 
 
 def set_gcp_creds(project_name: str, path_to_creds: Union[Path, str]) -> storage.Client:
@@ -46,7 +54,7 @@ def download_gs_folder(bucket, gs_path, dst_path, client=client):
     print("DONE")
 
 
-def rename_blob(blob: storage.blob.Blob, new_name, client=client):
+def rename_blob(blob: storage.blob.Blob, new_name: str, client=client):
     """Renames a blob."""
     # bucket_name = "your-bucket-name"
     # blob_name = "your-object-name"

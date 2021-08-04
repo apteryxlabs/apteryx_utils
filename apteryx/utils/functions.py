@@ -4,5 +4,5 @@ def retry(f, n, *fargs, **fkwargs):
             res = f(*fargs, **fkwargs)
             return res
         except ValueError:
-            print(f'Failed {t} time(s); trying again {n-t} more time(s).')
+            print(f"Failed {t} time(s); trying again {n-t} more time(s).")
             continue
